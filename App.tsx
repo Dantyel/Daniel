@@ -124,7 +124,7 @@ const App: React.FC = () => {
               </div>
               <input
                 type="text"
-                className="focus:ring-2 focus:ring-slate-800 focus:border-slate-800 block w-full pl-10 sm:text-sm border-slate-300 rounded-md p-3 shadow-sm border outline-none"
+                className="focus:ring-2 focus:ring-slate-700 focus:border-slate-700 block w-full pl-10 sm:text-sm bg-slate-800 border-slate-700 text-white placeholder-slate-400 rounded-md p-3 shadow-sm border outline-none"
                 placeholder="Buscar por Localidade, OPM ou Batalhão..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -132,7 +132,7 @@ const App: React.FC = () => {
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm('')}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white"
                 >
                   <X size={16} />
                 </button>
