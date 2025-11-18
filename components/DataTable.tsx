@@ -73,7 +73,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, highlightText }) => {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-800 text-white">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-700 text-white">
                     {row.btl_raio}
                   </span>
                 </td>
@@ -94,7 +94,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, highlightText }) => {
                    {getHighlight(row.localidade, highlightText)}
                  </h3>
               </div>
-              <span className="inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-slate-800 text-white">
+              <span className="inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-emerald-700 text-white">
                 {row.btl_raio}
               </span>
             </div>

@@ -27,14 +27,15 @@ const StatsDashboard: React.FC<StatsDashboardProps> = ({ data }) => {
     };
   }, [data]);
 
-  const colors = ['#1e293b', '#334155', '#475569', '#64748b', '#94a3b8'];
+  // Green/Emerald spectrum for the chart
+  const colors = ['#064e3b', '#065f46', '#047857', '#059669', '#10b981', '#34d399'];
 
   return (
     <div className="space-y-6 mb-8">
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center">
-          <div className="p-3 rounded-full bg-blue-50 text-blue-600 mr-4">
+          <div className="p-3 rounded-full bg-green-50 text-green-600 mr-4">
             <Map size={24} />
           </div>
           <div>
@@ -54,7 +55,7 @@ const StatsDashboard: React.FC<StatsDashboardProps> = ({ data }) => {
         </div>
 
         <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center">
-           <div className="p-3 rounded-full bg-indigo-50 text-indigo-600 mr-4">
+           <div className="p-3 rounded-full bg-emerald-50 text-emerald-600 mr-4">
             <Building2 size={24} />
           </div>
           <div>
@@ -85,7 +86,7 @@ const StatsDashboard: React.FC<StatsDashboardProps> = ({ data }) => {
                 tickLine={false}
               />
               <Tooltip 
-                cursor={{ fill: '#f1f5f9' }}
+                cursor={{ fill: '#f0fdf4' }} // Green tint on hover
                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
               />
               <Bar dataKey="count" radius={[4, 4, 0, 0]}>
