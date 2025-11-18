@@ -1,0 +1,5 @@
+{
+  "name": "Copy of RAIO Units Explorer",
+  "description": "A dashboard application to visualize and search Police RAIO unit locations, OPM structures, and Battalion distributions based on official records.",
+  "requestFramePermissions": []
+}
