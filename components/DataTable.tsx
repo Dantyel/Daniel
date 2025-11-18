@@ -10,20 +10,29 @@ interface DataTableProps {
 const DataTable: React.FC<DataTableProps> = ({ data, highlightText }) => {
   const getHighlight = (text: string, highlight: string) => {
     if (!highlight) return text;
-    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
-    return (
-      <span>
-        {parts.map((part, i) => 
-          part.toLowerCase() === highlight.toLowerCase() ? (
-            <span key={i} className="bg-yellow-200 text-black font-semibold rounded px-0.5">
-              {part}
-            </span>
-          ) : (
-            part
-          )
-        )}
-      </span>
-    );
+    
+    // Escape special regex characters to prevent crashes
+    const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+    try {
+      const parts = text.split(new RegExp(`(${escapedHighlight})`, 'gi'));
+      return (
+        <span>
+          {parts.map((part, i) => 
+            part.toLowerCase() === highlight.toLowerCase() ? (
+              <span key={i} className="bg-yellow-200 text-black font-semibold rounded px-0.5">
+                {part}
+              </span>
+            ) : (
+              part
+            )
+          )}
+        </span>
+      );
+    } catch (e) {
+      // Fallback if regex fails for any reason
+      return text;
+    }
   };
 
   if (data.length === 0) {
