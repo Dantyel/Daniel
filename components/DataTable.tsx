@@ -1,6 +1,6 @@
 import React from 'react';
 import { UnitData } from '../types';
-import { MapPin, Shield, Building } from 'lucide-react';
+import { MapPin, Shield } from 'lucide-react';
 
 interface DataTableProps {
   data: UnitData[];
@@ -8,8 +8,11 @@ interface DataTableProps {
 }
 
 const DataTable: React.FC<DataTableProps> = ({ data, highlightText }) => {
+  // Safety check
+  if (!data) return null;
+
   const getHighlight = (text: string, highlight: string) => {
-    if (!highlight) return text;
+    if (!highlight || !text) return text;
     
     // Escape special regex characters to prevent crashes
     const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

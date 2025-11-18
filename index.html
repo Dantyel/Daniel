@@ -4,10 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>RAIO Units Explorer</title>
-    <script>
-      // Polyfill process.env for libraries like Recharts that might rely on it
-      window.process = { env: { NODE_ENV: 'production' } };
-    </script>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -23,27 +21,64 @@
         }
       }
     </script>
+
+    <!-- Global Error Handler for Debugging White Screens -->
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        console.error("Global Error:", error);
+        const root = document.getElementById('root');
+        if (root && root.innerHTML === '') {
+          document.body.innerHTML = `
+            <div style="padding: 20px; font-family: sans-serif; color: #ef4444; background: #fff;">
+              <h2>Ops! Ocorreu um erro ao carregar a aplicação.</h2>
+              <p>Detalhes: ${message}</p>
+              <p>Linha: ${lineno}</p>
+              <button onclick="window.location.reload()" style="padding: 10px 20px; margin-top: 10px; cursor: pointer;">Recarregar Página</button>
+            </div>
+          `;
+        }
+      };
+
+      // Polyfill process.env
+      window.process = { env: { NODE_ENV: 'production' } };
+    </script>
+
     <style>
       body {
         background-color: #f8fafc;
         color: #1e293b;
       }
+      /* Simple spinner for loading state */
+      #loading {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: sans-serif;
+        color: #64748b;
+      }
     </style>
-  <script type="importmap">
+
+    <!-- Import Map using esm.sh for reliable production module loading -->
+    <script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
-    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
+    "react": "https://esm.sh/react@18.2.0",
+    "react/": "https://esm.sh/react@18.2.0/",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0",
+    "recharts": "https://esm.sh/recharts@2.12.2?external=react,react-dom",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
   }
 }
 </script>
-</head>
+  </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="loading">Carregando sistema...</div>
+    </div>
+    <!-- Entry Point -->
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
